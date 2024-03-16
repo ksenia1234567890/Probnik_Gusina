@@ -1,0 +1,57 @@
+CREATE DATABASE isp_201_gusina
+    WITH
+    OWNER = postgres
+    ENCODING = 'UTF8'
+    LC_COLLATE = 'en_US.utf8'
+    LC_CTYPE = 'en_US.utf8'
+    TABLESPACE = pg_default
+    CONNECTION LIMIT = -1
+    IS_TEMPLATE = False;
+
+CREATE TABLE IF NOT EXISTS public.product_material
+(
+    product_name character varying COLLATE pg_catalog."default",
+    material character varying COLLATE pg_catalog."default",
+    countneed character varying COLLATE pg_catalog."default"
+)
+
+CREATE TABLE IF NOT EXISTS public.products
+(
+    name character varying COLLATE pg_catalog."default",
+    articul character varying COLLATE pg_catalog."default",
+    minprice character varying COLLATE pg_catalog."default",
+    picture character varying COLLATE pg_catalog."default",
+    type character varying COLLATE pg_catalog."default",
+    count character varying COLLATE pg_catalog."default",
+    "number" character varying COLLATE pg_catalog."default"
+)
+
+
+CREATE OR REPLACE FUNCTION public.product_material_i(
+	q character varying,
+	w character varying,
+	e character varying)
+    RETURNS void
+    LANGUAGE 'sql'
+    COST 100
+    VOLATILE PARALLEL UNSAFE
+AS $BODY$
+insert into product_material values (q,w,e);
+$BODY$;
+
+CREATE OR REPLACE FUNCTION public.products_i(
+	q text,
+	w text,
+	e text,
+	r text,
+	t text,
+	y text,
+	u text)
+    RETURNS void
+    LANGUAGE 'sql'
+    COST 100
+    VOLATILE PARALLEL UNSAFE
+AS $BODY$
+ 
+insert into products values(q,w,e,r,t,y,u)
+$BODY$;
